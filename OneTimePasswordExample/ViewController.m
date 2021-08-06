@@ -26,6 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [self initOneTimePasswordToken];
+    [self initOneTimePasswordView];
+
+    [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
+}
+
+- (void)initOneTimePasswordToken {
     NSString *name = @"...";
     NSString *issuer = @"...";
     NSString *secretString = @"...";
@@ -33,9 +40,9 @@
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
     self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer ];
+}
 
-    [self.oneTimePasswordLabel setText:self.token.password];
-
+- (void)initOneTimePasswordView {
     // UNIXTIME を基準にワンタイムパスワードの残りの有効時間を算出
     NSInteger unixtime = [[NSDate date] timeIntervalSince1970];
     _localProgress = unixtime % 30 / 30.0;
@@ -43,7 +50,7 @@
     [self.oneTimePasswordProgressView setProgress:_localProgress animated:NO];
     [self.oneTimePasswordProgressView setLineWidth:10];
 
-    [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
+    [self.oneTimePasswordLabel setText:self.token.password];
 }
 
 - (void)updateOneTimePasswordView:(NSTimer *)timer {
