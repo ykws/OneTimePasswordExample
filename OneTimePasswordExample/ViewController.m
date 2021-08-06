@@ -8,8 +8,16 @@
 #import "ViewController.h"
 #import "OneTimePassword.h"
 #import <Base32/MF_Base32Additions.h>
+#import <UAProgressView.h>
 
 @interface ViewController ()
+
+@property (strong, nonatomic) OTPToken *token;
+
+@property (weak, nonatomic) IBOutlet UILabel *oneTimePasswordLabel;
+@property (weak, nonatomic) IBOutlet UAProgressView *oneTimePasswordProgressView;
+
+@property (nonatomic, assign) CGFloat localProgress;
 
 @end
 
@@ -24,10 +32,31 @@
 
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
-    OTPToken *token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer ];
+    self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer ];
 
-    NSLog(@"%@", token.password);
+    [self.oneTimePasswordLabel setText:self.token.password];
+
+    // UNIXTIME を基準にワンタイムパスワードの残りの有効時間を算出
+    NSInteger unixtime = [[NSDate date] timeIntervalSince1970];
+    _localProgress = unixtime % 30 / 30.0;
+
+    [self.oneTimePasswordProgressView setProgress:_localProgress animated:NO];
+    [self.oneTimePasswordProgressView setLineWidth:10];
+
+    [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
 }
 
+- (void)updateOneTimePasswordView:(NSTimer *)timer {
+    // 0.03 秒に1回更新するので、ワンタイムパスワード 30秒は 1000回で1周
+    // 1回の更新では 0.001 ずつ progress を進める
+    CGFloat newProgress = ((int)((_localProgress * 1000.0f) + 1.001) % 1000) / 1000.0f;
+
+    if (newProgress < _localProgress) {
+        [self.oneTimePasswordLabel setText:self.token.password];
+    }
+
+    _localProgress = newProgress;
+    [self.oneTimePasswordProgressView setProgress:_localProgress animated:NO];
+}
 
 @end

@@ -2,19 +2,23 @@ PODS:
   - Base32 (1.0.2)
   - OneTimePassword (1.1.1):
     - Base32 (~> 1.0.2)
+  - UAProgressView (0.1.4)
 
 DEPENDENCIES:
   - OneTimePassword (~> 1.0)
+  - UAProgressView
 
 SPEC REPOS:
   trunk:
     - Base32
     - OneTimePassword
+    - UAProgressView
 
 SPEC CHECKSUMS:
   Base32: 4e6b6d6c344b48da363c5268f9c391d37893401f
   OneTimePassword: cc497d84bc3758e44ca55b5d2f12019a2770378d
+  UAProgressView: 6796f5aa05037fb2940521636163b9db40a6c534
 
-PODFILE CHECKSUM: 3aa1fd5e51ccab09f99a18a4bec467c0d59f2188
+PODFILE CHECKSUM: 07904d67eb13b9136ed0ec5bcece3229fe2f25a7
 
 COCOAPODS: 1.10.2
