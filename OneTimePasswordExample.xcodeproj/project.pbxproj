@@ -14,6 +14,7 @@
 		08C8E27826BBA377006D4608 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08C8E27726BBA377006D4608 /* Assets.xcassets */; };
 		08C8E27B26BBA377006D4608 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08C8E27926BBA377006D4608 /* LaunchScreen.storyboard */; };
 		08C8E27E26BBA377006D4608 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E27D26BBA377006D4608 /* main.m */; };
+		4F8B41252703520D00CF6A1A /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8B41242703520D00CF6A1A /* SettingController.m */; };
 		9A376FD397E03D93D3D80530 /* libPods-OneTimePasswordExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C08B5529218DAFE111F19B53 /* libPods-OneTimePasswordExample.a */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,8 @@
 		08C8E27A26BBA377006D4608 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08C8E27C26BBA377006D4608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08C8E27D26BBA377006D4608 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F8B41242703520D00CF6A1A /* SettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		4F8B4126270484D900CF6A1A /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		62EA47A9FA5474BBDDECC144 /* Pods-OneTimePasswordExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTimePasswordExample.debug.xcconfig"; path = "Target Support Files/Pods-OneTimePasswordExample/Pods-OneTimePasswordExample.debug.xcconfig"; sourceTree = "<group>"; };
 		C08B5529218DAFE111F19B53 /* libPods-OneTimePasswordExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneTimePasswordExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0CF9A46AE07C0F1865C69D3 /* Pods-OneTimePasswordExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneTimePasswordExample.release.xcconfig"; path = "Target Support Files/Pods-OneTimePasswordExample/Pods-OneTimePasswordExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				08C8E26F26BBA376006D4608 /* SceneDelegate.m */,
 				08C8E27126BBA376006D4608 /* ViewController.h */,
 				08C8E27226BBA376006D4608 /* ViewController.m */,
+				4F8B41242703520D00CF6A1A /* SettingController.m */,
+				4F8B4126270484D900CF6A1A /* SettingController.h */,
 				08C8E27426BBA376006D4608 /* Main.storyboard */,
 				08C8E27726BBA377006D4608 /* Assets.xcassets */,
 				08C8E27926BBA377006D4608 /* LaunchScreen.storyboard */,
@@ -197,6 +202,7 @@
 			files = (
 				08C8E27326BBA376006D4608 /* ViewController.m in Sources */,
 				08C8E26D26BBA376006D4608 /* AppDelegate.m in Sources */,
+				4F8B41252703520D00CF6A1A /* SettingController.m in Sources */,
 				08C8E27E26BBA377006D4608 /* main.m in Sources */,
 				08C8E27026BBA376006D4608 /* SceneDelegate.m in Sources */,
 			);
