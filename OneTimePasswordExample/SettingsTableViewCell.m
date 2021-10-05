@@ -5,7 +5,7 @@
 //  Created by MaiNakagami on 2021/09/30.
 //
 
-#import "SettingTableViewCell.h"
+#import "SettingsTableViewCell.h"
 
 @implementation SettingsTableViewCell
 

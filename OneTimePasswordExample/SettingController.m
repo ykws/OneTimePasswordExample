@@ -6,6 +6,7 @@
 //
 
 #import "SettingController.h"
+#import "SettingsTableViewCell.h"
 
 #pragma mark - Settings item
 
@@ -66,6 +67,27 @@ extern SettingsItem SettingsItemUnknown;
     return 3;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SettingsTableViewCell *cell = (SettingsTableViewCell *)[tableView dequeueReusableCellWithIdentifier: @"SettingsTableViewCell" forIndexPath:indexPath];
+    
+    switch (indexPath.row) {
+        case 0:
+            cell.titleLabel.text = @"TEST1";
+            cell.valueLabel.text = self.test1;
+            break;
+        case 1:
+            cell.titleLabel.text = @"TEST2";
+            cell.valueLabel.text = self.test2;
+            break;
+        case 2:
+            cell.titleLabel.text = @"TEST3";
+            cell.valueLabel.text = self.test3;
+            break;
+    }
+    
+    return cell;
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -114,5 +136,5 @@ extern SettingsItem SettingsItemUnknown;
  
     [self.tableView reloadData];
 }
-@end
 
+@end
