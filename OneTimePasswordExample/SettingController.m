@@ -48,9 +48,9 @@ extern SettingsItem SettingsItemUnknown;
     self.pickerView.delegate = self;
     [self.view addSubview: self.pickerView];
 
-    self.test1Patterns = @[@"1", @"2", @"3"];
-    self.test2Patterns = @[@"4", @"5", @"6"];
-    self.test3Patterns = @[@"7", @"8", @"9"];
+    self.test1Patterns = @[@"SHA1", @"SHA256", @"SHA512"];
+    self.test2Patterns = @[@"4", @"5", @"6", @"7", @"8", @"9", @"10"];
+    self.test3Patterns = @[@"30", @"60"];
 
     self.test1 = self.test1Patterns[0];
     self.test2 = self.test2Patterns[0];
@@ -72,15 +72,15 @@ extern SettingsItem SettingsItemUnknown;
     
     switch (indexPath.row) {
         case 0:
-            cell.titleLabel.text = @"TEST1";
+            cell.titleLabel.text = @"アルゴリズム";
             cell.valueLabel.text = self.test1;
             break;
         case 1:
-            cell.titleLabel.text = @"TEST2";
+            cell.titleLabel.text = @"OTP桁数";
             cell.valueLabel.text = self.test2;
             break;
         case 2:
-            cell.titleLabel.text = @"TEST3";
+            cell.titleLabel.text = @"タイムステップ数";
             cell.valueLabel.text = self.test3;
             break;
     }
@@ -103,7 +103,16 @@ extern SettingsItem SettingsItemUnknown;
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 3;
+    switch (component) {
+        case 0:
+            return self.test1Patterns.count;
+        case 1:
+            return self.test2Patterns.count;
+        case 2:
+            return self.test3Patterns.count;
+        default:
+            return 0;
+    }
 }
 
 #pragma mark - Picker view delegate
