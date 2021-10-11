@@ -37,7 +37,9 @@ extern SettingsItem SettingsItemUnknown;
 
 @end
 
-@implementation SettingController
+@implementation SettingController {
+    NSIndexPath * pickerIndexPath;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -91,9 +93,9 @@ extern SettingsItem SettingsItemUnknown;
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.settingsItem = indexPath.row;
     [self.pickerView selectRow:0 inComponent:0 animated:true];
     [self.pickerView reloadAllComponents];
-    self.settingsItem = indexPath.row;
 }
 
 #pragma mark - Picker view data source
@@ -103,12 +105,12 @@ extern SettingsItem SettingsItemUnknown;
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    switch (component) {
-        case 0:
+    switch (self.settingsItem) {
+        case SettingsItem1:
             return self.test1Patterns.count;
-        case 1:
+        case SettingsItem2:
             return self.test2Patterns.count;
-        case 2:
+        case SettingsItme3:
             return self.test3Patterns.count;
         default:
             return 0;
