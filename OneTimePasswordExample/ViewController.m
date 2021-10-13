@@ -36,10 +36,12 @@
     NSString *name = @"...";
     NSString *issuer = @"...";
     NSString *secretString = @"...";
+    OTPAlgorithm *algorithm = @"OTPAlgorithm algorithm";
 
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
-    self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer ];
+    self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer];
+    self.token.algorithm = *algorithm;
 }
 
 - (void)initOneTimePasswordView {

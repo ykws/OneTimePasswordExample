@@ -35,7 +35,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="設定"/>
                                 <connections>
-                                    <segue destination="maI-u2-Zio" kind="show" identifier="to setting" id="iaU-Pc-RNd"/>
+                                    <segue destination="fjB-jt-FNn" kind="show" identifier="to setting" id="iaU-Pc-RNd"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -105,9 +105,28 @@
                             <outlet property="delegate" destination="maI-u2-Zio" id="O1g-UV-F2h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gZv-0X-QNQ"/>
+                    <navigationItem key="navigationItem" id="Q8C-HW-VYN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZU-ge-jmc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713.04347826086962" y="-595.3125"/>
+        </scene>
+        <!--戻る-->
+        <scene sceneID="rzE-22-OhN">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yHj-4f-v9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fjB-jt-FNn" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="戻る" id="OiG-ht-esz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Owo-AH-vZx">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="maI-u2-Zio" kind="relationship" relationship="rootViewController" id="eRU-fs-8GP"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="-197.10144927536234" y="-595.3125"/>
         </scene>
