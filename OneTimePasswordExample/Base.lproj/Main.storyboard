@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,9 +35,16 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="設定"/>
                                 <connections>
-                                    <segue destination="fjB-jt-FNn" kind="show" identifier="to setting" id="iaU-Pc-RNd"/>
+                                    <segue destination="kgh-34-Dqc" kind="show" id="wLP-Fg-dTJ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-HP-AcD">
+                                <rect key="frame" x="186" y="73" width="42" height="105"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -53,23 +60,34 @@
                             <constraint firstItem="YFg-3N-DhZ" firstAttribute="top" secondItem="aqW-F6-Yvt" secondAttribute="bottom" constant="150" id="s5y-KA-9sU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vdE-z6-yiA"/>
                     <connections>
                         <outlet property="oneTimePasswordLabel" destination="JX5-NB-jZf" id="cql-S7-e6Z"/>
                         <outlet property="oneTimePasswordProgressView" destination="aqW-F6-Yvt" id="zK4-rs-OWS"/>
+                        <outlet property="test" destination="vKC-HP-AcD" id="REl-FT-HNX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="78.348214285714278"/>
+            <point key="canvasLocation" x="2749.275362318841" y="78.348214285714278"/>
         </scene>
         <!--Setting Controller-->
         <scene sceneID="KmQ-w1-cif">
             <objects>
-                <viewController id="maI-u2-Zio" customClass="SettingController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="maI-u2-Zio" customClass="SettingController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="DgX-Op-7fC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="L2b-dO-OP0">
+                            <rect key="frame" x="0.0" y="110.5" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="戻る"/>
+                            <connections>
+                                <segue destination="QyK-DV-X8m" kind="show" id="QxP-WU-NV5"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="6DC-et-efa" customClass="SettingsTableViewCell">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -109,26 +127,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZU-ge-jmc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="713.04347826086962" y="-595.3125"/>
+            <point key="canvasLocation" x="2533.3333333333335" y="-595.3125"/>
         </scene>
-        <!--戻る-->
-        <scene sceneID="rzE-22-OhN">
+        <!--Navigation Controller-->
+        <scene sceneID="SJL-Zr-8oE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yHj-4f-v9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fjB-jt-FNn" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="QyK-DV-X8m" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="戻る" id="OiG-ht-esz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Owo-AH-vZx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                    <navigationItem key="navigationItem" id="4n0-Gl-QwB"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aMT-KM-pBy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="maI-u2-Zio" kind="relationship" relationship="rootViewController" id="eRU-fs-8GP"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="h2t-n8-EtH"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kkQ-er-YKy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197.10144927536234" y="-595.3125"/>
+            <point key="canvasLocation" x="1839.1304347826087" y="78.348214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7EF-Nd-PRu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="kgh-34-Dqc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gIx-kP-YF2"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bDL-ZL-vdb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="maI-u2-Zio" kind="relationship" relationship="rootViewController" id="7Qy-iY-MsY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4FO-E5-fnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1623.1884057971015" y="-595.3125"/>
         </scene>
     </scenes>
     <resources>
