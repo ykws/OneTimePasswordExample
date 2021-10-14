@@ -7,6 +7,7 @@
 
 #import "SettingController.h"
 #import "SettingsTableViewCell.h"
+#import "ViewController.h"
 
 #pragma mark - Settings item
 
@@ -30,10 +31,6 @@ extern SettingsItem SettingsItemUnknown;
 @property (nonatomic) NSArray *test1Patterns;
 @property (nonatomic) NSArray *test2Patterns;
 @property (nonatomic) NSArray *test3Patterns;
-
-@property (nonatomic) NSString *test1;
-@property (nonatomic) NSString *test2;
-@property (nonatomic) NSString *test3;
 
 @end
 
@@ -133,9 +130,12 @@ extern SettingsItem SettingsItemUnknown;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    UIStoryboardSegue *segue;
+    ViewController *viewController = segue.destinationViewController;
     switch (self.settingsItem) {
         case SettingsItem1:
             self.test1 = self.test1Patterns[row];
+            viewController.test.text = self.test1;
             break;
         case SettingsItem2:
             self.test2 = self.test2Patterns[row];

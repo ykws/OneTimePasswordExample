@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "OneTimePassword.h"
+#import "SettingController.h"
 #import <Base32/MF_Base32Additions.h>
 #import <UAProgressView.h>
 
@@ -36,12 +37,12 @@
     NSString *name = @"...";
     NSString *issuer = @"...";
     NSString *secretString = @"...";
-    OTPAlgorithm *algorithm = @"OTPAlgorithm algorithm";
+    SettingController *settingController;
 
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
     self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer];
-    self.token.algorithm = *algorithm;
+    self.token.algorithm = @"OTPAlgorithm algorithm";
 }
 
 - (void)initOneTimePasswordView {
