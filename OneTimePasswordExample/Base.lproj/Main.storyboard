@@ -35,16 +35,9 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="設定"/>
                                 <connections>
-                                    <segue destination="kgh-34-Dqc" kind="show" id="wLP-Fg-dTJ"/>
+                                    <segue destination="maI-u2-Zio" kind="show" identifier="viewSegue" id="Cdg-sN-cDv"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-HP-AcD">
-                                <rect key="frame" x="186" y="73" width="42" height="105"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -64,7 +57,6 @@
                     <connections>
                         <outlet property="oneTimePasswordLabel" destination="JX5-NB-jZf" id="cql-S7-e6Z"/>
                         <outlet property="oneTimePasswordProgressView" destination="aqW-F6-Yvt" id="zK4-rs-OWS"/>
-                        <outlet property="test" destination="vKC-HP-AcD" id="REl-FT-HNX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -76,7 +68,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="maI-u2-Zio" customClass="SettingController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="DgX-Op-7fC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="L2b-dO-OP0">
@@ -85,7 +77,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="filled" title="戻る"/>
                             <connections>
-                                <segue destination="QyK-DV-X8m" kind="show" id="QxP-WU-NV5"/>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="settingSegue" id="ayo-nI-n3c"/>
                             </connections>
                         </button>
                         <prototypes>
@@ -128,44 +120,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZU-ge-jmc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2533.3333333333335" y="-595.3125"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="SJL-Zr-8oE">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="QyK-DV-X8m" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="4n0-Gl-QwB"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aMT-KM-pBy">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="h2t-n8-EtH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kkQ-er-YKy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1839.1304347826087" y="78.348214285714278"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="7EF-Nd-PRu">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" id="kgh-34-Dqc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="gIx-kP-YF2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="bDL-ZL-vdb">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="maI-u2-Zio" kind="relationship" relationship="rootViewController" id="7Qy-iY-MsY"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4FO-E5-fnZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1623.1884057971015" y="-595.3125"/>
         </scene>
     </scenes>
     <resources>

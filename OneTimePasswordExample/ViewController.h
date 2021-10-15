@@ -8,7 +8,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UILabel *test;
+@property (nonatomic) NSString *test1;
+@property (nonatomic) NSString *test2;
+@property (nonatomic) NSString *test3;
 
 @end
 
