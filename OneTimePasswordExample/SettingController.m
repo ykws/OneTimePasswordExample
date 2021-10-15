@@ -130,12 +130,9 @@ extern SettingsItem SettingsItemUnknown;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    UIStoryboardSegue *segue;
-    ViewController *viewController = segue.destinationViewController;
     switch (self.settingsItem) {
         case SettingsItem1:
             self.test1 = self.test1Patterns[row];
-            viewController.test.text = self.test1;
             break;
         case SettingsItem2:
             self.test2 = self.test2Patterns[row];
@@ -146,6 +143,14 @@ extern SettingsItem SettingsItemUnknown;
     }
  
     [self.tableView reloadData];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ViewController *viewController = segue.destinationViewController;
+    viewController.test1 = self.test1;
+    viewController.test2 = self.test2;
+    viewController.test3 = self.test3;
 }
 
 @end

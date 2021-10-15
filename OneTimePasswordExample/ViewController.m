@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *oneTimePasswordLabel;
 @property (weak, nonatomic) IBOutlet UAProgressView *oneTimePasswordProgressView;
+@property (weak, nonatomic) IBOutlet UILabel *test;
 
 @property (nonatomic, assign) CGFloat localProgress;
 
@@ -31,13 +32,13 @@
     [self initOneTimePasswordView];
 
     [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
+    
 }
 
 - (void)initOneTimePasswordToken {
     NSString *name = @"...";
     NSString *issuer = @"...";
     NSString *secretString = @"...";
-    SettingController *settingController;
 
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
