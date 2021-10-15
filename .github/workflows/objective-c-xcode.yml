@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Cocoa Pods
+      - name: Install Pods
         run: pod install
       - name: Set Default Scheme
         run: |
@@ -27,4 +27,9 @@ jobs:
           scheme: ${{ 'default' }}
         run: |
           if [ $scheme = default ]; then scheme=$(cat default); fi
-          xcodebuild -scheme "$scheme" -sdk iphonesimulator -configuration Debug build
+          xcodebuild
+          -workspace OneTimePasswordExample.xcworkspace/
+          -scheme "$scheme"
+          -sdk iphonesimulator
+          -configuration Debug
+          clean build
