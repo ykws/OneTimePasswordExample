@@ -17,10 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *oneTimePasswordLabel;
 @property (weak, nonatomic) IBOutlet UAProgressView *oneTimePasswordProgressView;
-@property (weak, nonatomic) IBOutlet UILabel *test;
-
 @property (nonatomic, assign) CGFloat localProgress;
-
 @end
 
 @implementation ViewController
@@ -32,7 +29,6 @@
     [self initOneTimePasswordView];
 
     [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
-    
 }
 
 - (void)initOneTimePasswordToken {
@@ -43,7 +39,15 @@
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
     self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer];
-    self.token.algorithm = @"OTPAlgorithm algorithm";
+    if (_test1 != nil) {
+        self.token.algorithm = _test1;
+    }
+    if (_test2 != nil) {
+        self.token.digits = [_test2 intValue];
+    }
+    if (_test3 != nil) {
+        self.token.period = [_test3 intValue];
+    }
 }
 
 - (void)initOneTimePasswordView {
@@ -69,5 +73,4 @@
     _localProgress = newProgress;
     [self.oneTimePasswordProgressView setProgress:_localProgress animated:NO];
 }
-
 @end
