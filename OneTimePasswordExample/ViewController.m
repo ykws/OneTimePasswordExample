@@ -7,6 +7,7 @@
 
 #import "ViewController.h"
 #import "OneTimePassword.h"
+#import "SettingController.h"
 #import <Base32/MF_Base32Additions.h>
 #import <UAProgressView.h>
 
@@ -16,12 +17,12 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *oneTimePasswordLabel;
 @property (weak, nonatomic) IBOutlet UAProgressView *oneTimePasswordProgressView;
-
 @property (nonatomic, assign) CGFloat localProgress;
-
+@property (nonatomic) float scheduledTimerWithTimeInterval;
 @end
 
 @implementation ViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,7 +30,7 @@
     [self initOneTimePasswordToken];
     [self initOneTimePasswordView];
 
-    [NSTimer scheduledTimerWithTimeInterval:0.03 target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:self.scheduledTimerWithTimeInterval target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
 }
 
 - (void)initOneTimePasswordToken {
@@ -39,7 +40,21 @@
 
     NSData *secretData = [NSData dataWithBase32String:secretString];
 
-    self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer ];
+    self.token = [OTPToken tokenWithType:OTPTokenTypeTimer secret:secretData name:name issuer:issuer];
+    self.scheduledTimerWithTimeInterval = 0.03f;
+    if (_algorithm != nil) {
+        NSArray *OTPAlgorithmStrings = @[@"SHA1", @"SHA256", @"SHA512"];
+        self.token.algorithm = [OTPAlgorithmStrings indexOfObject:_algorithm];
+    }
+    if (_digits != nil) {
+        self.token.digits = [_digits intValue];
+    }
+    if (_period != nil) {
+        self.token.period = [_period intValue];
+        if([_period isEqualToString:@"60"]) {
+            self.scheduledTimerWithTimeInterval = 0.06f;
+        }
+    }
 }
 
 - (void)initOneTimePasswordView {
@@ -64,6 +79,7 @@
 
     _localProgress = newProgress;
     [self.oneTimePasswordProgressView setProgress:_localProgress animated:NO];
+
 }
 
 @end

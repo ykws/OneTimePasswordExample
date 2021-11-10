@@ -7,13 +7,14 @@
 
 #import "SettingController.h"
 #import "SettingsTableViewCell.h"
+#import "ViewController.h"
 
 #pragma mark - Settings item
 
 typedef NS_ENUM(UInt8, SettingsItem) {
-    SettingsItem1,
-    SettingsItem2,
-    SettingsItme3,
+    AlgorithmItem,
+    DigitsItem,
+    PeriodItme,
 };
 
 extern SettingsItem SettingsItemUnknown;
@@ -27,17 +28,19 @@ extern SettingsItem SettingsItemUnknown;
 
 @property (nonatomic) UIPickerView *pickerView;
 
-@property (nonatomic) NSArray *test1Patterns;
-@property (nonatomic) NSArray *test2Patterns;
-@property (nonatomic) NSArray *test3Patterns;
+@property (nonatomic) NSArray *algorithmPatterns;
+@property (nonatomic) NSArray *digitsPatterns;
+@property (nonatomic) NSArray *periodPatterns;
 
-@property (nonatomic) NSString *test1;
-@property (nonatomic) NSString *test2;
-@property (nonatomic) NSString *test3;
+@property (nonatomic) NSString *algorithm;
+@property (nonatomic) NSString *digits;
+@property (nonatomic) NSString *period;
 
 @end
 
-@implementation SettingController
+@implementation SettingController {
+    NSIndexPath * pickerIndexPath;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -48,13 +51,13 @@ extern SettingsItem SettingsItemUnknown;
     self.pickerView.delegate = self;
     [self.view addSubview: self.pickerView];
 
-    self.test1Patterns = @[@"1", @"2", @"3"];
-    self.test2Patterns = @[@"4", @"5", @"6"];
-    self.test3Patterns = @[@"7", @"8", @"9"];
+    self.algorithmPatterns = @[@"SHA1", @"SHA256", @"SHA512"];
+    self.digitsPatterns = @[@"4", @"5", @"6", @"7", @"8", @"9", @"10"];
+    self.periodPatterns = @[@"30", @"60"];
 
-    self.test1 = self.test1Patterns[0];
-    self.test2 = self.test2Patterns[0];
-    self.test3 = self.test3Patterns[0];
+    self.algorithm = self.algorithmPatterns[0];
+    self.digits = self.digitsPatterns[0];
+    self.period = self.periodPatterns[0];
 }
 
 #pragma mark - Table view data source
@@ -72,16 +75,16 @@ extern SettingsItem SettingsItemUnknown;
     
     switch (indexPath.row) {
         case 0:
-            cell.titleLabel.text = @"TEST1";
-            cell.valueLabel.text = self.test1;
+            cell.titleLabel.text = @"アルゴリズム";
+            cell.valueLabel.text = self.algorithm;
             break;
         case 1:
-            cell.titleLabel.text = @"TEST2";
-            cell.valueLabel.text = self.test2;
+            cell.titleLabel.text = @"OTP桁数";
+            cell.valueLabel.text = self.digits;
             break;
         case 2:
-            cell.titleLabel.text = @"TEST3";
-            cell.valueLabel.text = self.test3;
+            cell.titleLabel.text = @"タイムステップ数";
+            cell.valueLabel.text = self.period;
             break;
     }
     
@@ -91,9 +94,9 @@ extern SettingsItem SettingsItemUnknown;
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.settingsItem = indexPath.row;
     [self.pickerView selectRow:0 inComponent:0 animated:true];
     [self.pickerView reloadAllComponents];
-    self.settingsItem = indexPath.row;
 }
 
 #pragma mark - Picker view data source
@@ -103,19 +106,28 @@ extern SettingsItem SettingsItemUnknown;
 }
 
 - (NSInteger)pickerView:(nonnull UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return 3;
+    switch (self.settingsItem) {
+        case AlgorithmItem:
+            return self.algorithmPatterns.count;
+        case DigitsItem:
+            return self.digitsPatterns.count;
+        case PeriodItme:
+            return self.periodPatterns.count;
+        default:
+            return 0;
+    }
 }
 
 #pragma mark - Picker view delegate
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     switch (self.settingsItem) {
-        case SettingsItem1:
-            return self.test1Patterns[row];
-        case SettingsItem2:
-            return self.test2Patterns[row];
-        case SettingsItme3:
-            return self.test3Patterns[row];
+        case AlgorithmItem:
+            return self.algorithmPatterns[row];
+        case DigitsItem:
+            return self.digitsPatterns[row];
+        case PeriodItme:
+            return self.periodPatterns[row];
     }
     
     return @"";
@@ -123,18 +135,26 @@ extern SettingsItem SettingsItemUnknown;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (self.settingsItem) {
-        case SettingsItem1:
-            self.test1 = self.test1Patterns[row];
+        case AlgorithmItem:
+            self.algorithm = self.algorithmPatterns[row];
             break;
-        case SettingsItem2:
-            self.test2 = self.test2Patterns[row];
+        case DigitsItem:
+            self.digits = self.digitsPatterns[row];
             break;
-        case SettingsItme3:
-            self.test3 = self.test3Patterns[row];
+        case PeriodItme:
+            self.period = self.periodPatterns[row];
             break;
     }
  
     [self.tableView reloadData];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ViewController *viewController = segue.destinationViewController;
+    viewController.algorithm = self.algorithm;
+    viewController.digits = self.digits;
+    viewController.period = self.period;
 }
 
 @end

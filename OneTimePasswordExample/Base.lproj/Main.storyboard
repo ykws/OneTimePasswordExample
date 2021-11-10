@@ -12,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -35,7 +35,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="設定"/>
                                 <connections>
-                                    <segue destination="maI-u2-Zio" kind="show" identifier="to setting" id="iaU-Pc-RNd"/>
+                                    <segue destination="maI-u2-Zio" kind="show" identifier="viewSegue" id="Cdg-sN-cDv"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -53,6 +53,7 @@
                             <constraint firstItem="YFg-3N-DhZ" firstAttribute="top" secondItem="aqW-F6-Yvt" secondAttribute="bottom" constant="150" id="s5y-KA-9sU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="vdE-z6-yiA"/>
                     <connections>
                         <outlet property="oneTimePasswordLabel" destination="JX5-NB-jZf" id="cql-S7-e6Z"/>
                         <outlet property="oneTimePasswordProgressView" destination="aqW-F6-Yvt" id="zK4-rs-OWS"/>
@@ -60,16 +61,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="78.348214285714278"/>
+            <point key="canvasLocation" x="2749.275362318841" y="78.348214285714278"/>
         </scene>
         <!--Setting Controller-->
         <scene sceneID="KmQ-w1-cif">
             <objects>
-                <viewController id="maI-u2-Zio" customClass="SettingController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="maI-u2-Zio" customClass="SettingController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="DgX-Op-7fC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="L2b-dO-OP0">
+                            <rect key="frame" x="0.0" y="110.5" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="戻る"/>
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="settingSegue" id="ayo-nI-n3c"/>
+                            </connections>
+                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SettingsTableViewCell" id="6DC-et-efa" customClass="SettingsTableViewCell">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
@@ -105,11 +115,11 @@
                             <outlet property="delegate" destination="maI-u2-Zio" id="O1g-UV-F2h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gZv-0X-QNQ"/>
+                    <navigationItem key="navigationItem" id="Q8C-HW-VYN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fZU-ge-jmc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197.10144927536234" y="-595.3125"/>
+            <point key="canvasLocation" x="2533.3333333333335" y="-595.3125"/>
         </scene>
     </scenes>
     <resources>
