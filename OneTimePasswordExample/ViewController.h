@@ -8,9 +8,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-@property (nonatomic) NSString *algorithm;
-@property (nonatomic) NSString *digits;
-@property (nonatomic) NSString *period;
 
 @end
 
