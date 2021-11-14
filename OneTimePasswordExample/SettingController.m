@@ -14,7 +14,7 @@
 typedef NS_ENUM(UInt8, SettingsItem) {
     AlgorithmItem,
     DigitsItem,
-    PeriodItme,
+    PeriodItem,
 };
 
 extern SettingsItem SettingsItemUnknown;
@@ -111,7 +111,7 @@ extern SettingsItem SettingsItemUnknown;
             return self.algorithmPatterns.count;
         case DigitsItem:
             return self.digitsPatterns.count;
-        case PeriodItme:
+        case PeriodItem:
             return self.periodPatterns.count;
         default:
             return 0;
@@ -126,7 +126,7 @@ extern SettingsItem SettingsItemUnknown;
             return self.algorithmPatterns[row];
         case DigitsItem:
             return self.digitsPatterns[row];
-        case PeriodItme:
+        case PeriodItem:
             return self.periodPatterns[row];
     }
     
