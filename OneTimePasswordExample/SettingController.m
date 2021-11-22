@@ -7,14 +7,14 @@
 
 #import "SettingController.h"
 #import "SettingsTableViewCell.h"
-#import "ViewController.h"
+#import "OneTimePasswordSettings.h"
 
 #pragma mark - Settings item
 
 typedef NS_ENUM(UInt8, SettingsItem) {
     AlgorithmItem,
     DigitsItem,
-    PeriodItme,
+    PeriodItem,
 };
 
 extern SettingsItem SettingsItemUnknown;
@@ -24,6 +24,8 @@ extern SettingsItem SettingsItemUnknown;
 
 @interface SettingController () <UIPickerViewDataSource, UIPickerViewDelegate>
 
+@property (nonatomic) OneTimePasswordSettings *settings;
+
 @property (nonatomic) SettingsItem settingsItem;
 
 @property (nonatomic) UIPickerView *pickerView;
@@ -31,10 +33,6 @@ extern SettingsItem SettingsItemUnknown;
 @property (nonatomic) NSArray *algorithmPatterns;
 @property (nonatomic) NSArray *digitsPatterns;
 @property (nonatomic) NSArray *periodPatterns;
-
-@property (nonatomic) NSString *algorithm;
-@property (nonatomic) NSString *digits;
-@property (nonatomic) NSString *period;
 
 @end
 
@@ -45,6 +43,8 @@ extern SettingsItem SettingsItemUnknown;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.settings = [OneTimePasswordSettings sharedInstance];
+
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.center = self.view.center;
     self.pickerView.dataSource = self;
@@ -54,10 +54,6 @@ extern SettingsItem SettingsItemUnknown;
     self.algorithmPatterns = @[@"SHA1", @"SHA256", @"SHA512"];
     self.digitsPatterns = @[@"4", @"5", @"6", @"7", @"8", @"9", @"10"];
     self.periodPatterns = @[@"30", @"60"];
-
-    self.algorithm = self.algorithmPatterns[0];
-    self.digits = self.digitsPatterns[0];
-    self.period = self.periodPatterns[0];
 }
 
 #pragma mark - Table view data source
@@ -76,15 +72,15 @@ extern SettingsItem SettingsItemUnknown;
     switch (indexPath.row) {
         case 0:
             cell.titleLabel.text = @"アルゴリズム";
-            cell.valueLabel.text = self.algorithm;
+            cell.valueLabel.text = [self.settings algorithmString];
             break;
         case 1:
             cell.titleLabel.text = @"OTP桁数";
-            cell.valueLabel.text = self.digits;
+            cell.valueLabel.text = [self.settings digitsString];
             break;
         case 2:
             cell.titleLabel.text = @"タイムステップ数";
-            cell.valueLabel.text = self.period;
+            cell.valueLabel.text = [self.settings periodString];
             break;
     }
     
@@ -94,8 +90,10 @@ extern SettingsItem SettingsItemUnknown;
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // FIXME: タップしても反応しないことがある
     self.settingsItem = indexPath.row;
-    [self.pickerView selectRow:0 inComponent:0 animated:true];
+    NSInteger selectRow = [self pickerSelectRowWithItem:self.settingsItem];
+    [self.pickerView selectRow:selectRow inComponent:0 animated:true];
     [self.pickerView reloadAllComponents];
 }
 
@@ -111,7 +109,7 @@ extern SettingsItem SettingsItemUnknown;
             return self.algorithmPatterns.count;
         case DigitsItem:
             return self.digitsPatterns.count;
-        case PeriodItme:
+        case PeriodItem:
             return self.periodPatterns.count;
         default:
             return 0;
@@ -126,7 +124,7 @@ extern SettingsItem SettingsItemUnknown;
             return self.algorithmPatterns[row];
         case DigitsItem:
             return self.digitsPatterns[row];
-        case PeriodItme:
+        case PeriodItem:
             return self.periodPatterns[row];
     }
     
@@ -136,25 +134,58 @@ extern SettingsItem SettingsItemUnknown;
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (self.settingsItem) {
         case AlgorithmItem:
-            self.algorithm = self.algorithmPatterns[row];
+            [self.settings saveAlgorithmString:self.algorithmPatterns[row]];
             break;
         case DigitsItem:
-            self.digits = self.digitsPatterns[row];
+            [self.settings saveDigitsString:self.digitsPatterns[row]];
             break;
-        case PeriodItme:
-            self.period = self.periodPatterns[row];
+        case PeriodItem:
+            [self.settings savePeriodString:self.periodPatterns[row]];
             break;
     }
  
     [self.tableView reloadData];
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    ViewController *viewController = segue.destinationViewController;
-    viewController.algorithm = self.algorithm;
-    viewController.digits = self.digits;
-    viewController.period = self.period;
+#pragma mark - Settigns Index
+
+- (NSInteger)pickerSelectRowWithItem:(SettingsItem)item{
+    switch (item) {
+        case AlgorithmItem:
+            return [self indexWithAlgorithmString:[self.settings algorithmString]];
+        case DigitsItem:
+            return [self indexWithDigitsString:[self.settings digitsString]];
+        case PeriodItem:
+            return [self indexWithPeriodString:[self.settings periodString]];
+    }
+    return 0;
+}
+
+- (NSInteger)indexWithAlgorithmString:(NSString *)algorithmString {
+    for (int i = 0; i < self.algorithmPatterns.count; i++) {
+        if ([self.algorithmPatterns[i] isEqual:algorithmString]) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+- (NSInteger)indexWithDigitsString:(NSString *)digitsString {
+    for (int i = 0; i < self.digitsPatterns.count; i++) {
+        if ([self.digitsPatterns[i] isEqual:digitsString]) {
+            return i;
+        }
+    }
+    return 0;
+}
+
+- (NSInteger)indexWithPeriodString:(NSString *)periodString {
+    for (int i = 0; i < self.periodPatterns.count; i++) {
+        if ([self.periodPatterns[i] isEqual:periodString]) {
+            return i;
+        }
+    }
+    return 0;
 }
 
 @end

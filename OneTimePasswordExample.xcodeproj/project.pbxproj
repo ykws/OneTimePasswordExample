@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		089ECCC427417C0400C7EAB8 /* OneTimePasswordSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */; };
 		08C8E26D26BBA376006D4608 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E26C26BBA376006D4608 /* AppDelegate.m */; };
 		08C8E27026BBA376006D4608 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E26F26BBA376006D4608 /* SceneDelegate.m */; };
 		08C8E27326BBA376006D4608 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E27226BBA376006D4608 /* ViewController.m */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		089ECCC227417C0400C7EAB8 /* OneTimePasswordSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneTimePasswordSettings.h; sourceTree = "<group>"; };
+		089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimePasswordSettings.m; sourceTree = "<group>"; };
 		08C8E26826BBA376006D4608 /* OneTimePasswordExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneTimePasswordExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08C8E26B26BBA376006D4608 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		08C8E26C26BBA376006D4608 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -55,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		089ECCC127417BDA00C7EAB8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				089ECCC227417C0400C7EAB8 /* OneTimePasswordSettings.h */,
+				089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		08C8E25F26BBA376006D4608 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +88,7 @@
 		08C8E26A26BBA376006D4608 /* OneTimePasswordExample */ = {
 			isa = PBXGroup;
 			children = (
+				089ECCC127417BDA00C7EAB8 /* Model */,
 				4F8B41272705F8A900CF6A1A /* SettingsTableViewCell.h */,
 				4F8B41282705F8CF00CF6A1A /* SettingsTableViewCell.m */,
 				08C8E26B26BBA376006D4608 /* AppDelegate.h */,
@@ -215,6 +228,7 @@
 				4F8B41252703520D00CF6A1A /* SettingController.m in Sources */,
 				08C8E27E26BBA377006D4608 /* main.m in Sources */,
 				08C8E27026BBA376006D4608 /* SceneDelegate.m in Sources */,
+				089ECCC427417C0400C7EAB8 /* OneTimePasswordSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
