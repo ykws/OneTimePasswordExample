@@ -17,7 +17,7 @@ jobs:
         run: pod install
 
       - name: Test
-        run: xcodebuild test -workspace OneTimePasswordExample.xcworkspace/ -scheme OneTimePasswordExample -resultBundlePath TestReulsts -sdk iphonesimulator -destination "platform=iOS Simulator,iPhone 11"
+        run: xcodebuild test -workspace OneTimePasswordExample.xcworkspace/ -scheme OneTimePasswordExample -resultBundlePath TestReulsts -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
         
       - uses: kishikawakatsumi/xcresulttool@v1.3.0
         with: 
