@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08804D92274BE72D00634C07 /* OneTimePasswordConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08804D91274BE72D00634C07 /* OneTimePasswordConverter.m */; };
 		08804DA0274D283900634C07 /* OneTimePasswordSettingsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08804D9F274D283900634C07 /* OneTimePasswordSettingsTests.m */; };
+		08804DA7274D3FA800634C07 /* OneTimePasswordConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 08804DA6274D3FA800634C07 /* OneTimePasswordConverterTest.m */; };
 		089ECCC427417C0400C7EAB8 /* OneTimePasswordSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */; };
 		08C8E26D26BBA376006D4608 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E26C26BBA376006D4608 /* AppDelegate.m */; };
 		08C8E27026BBA376006D4608 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08C8E26F26BBA376006D4608 /* SceneDelegate.m */; };
@@ -34,8 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08804D90274BE72D00634C07 /* OneTimePasswordConverter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneTimePasswordConverter.h; sourceTree = "<group>"; };
+		08804D91274BE72D00634C07 /* OneTimePasswordConverter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimePasswordConverter.m; sourceTree = "<group>"; };
 		08804D9D274D283900634C07 /* OneTimePasswordExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OneTimePasswordExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		08804D9F274D283900634C07 /* OneTimePasswordSettingsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimePasswordSettingsTests.m; sourceTree = "<group>"; };
+		08804DA6274D3FA800634C07 /* OneTimePasswordConverterTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimePasswordConverterTest.m; sourceTree = "<group>"; };
 		089ECCC227417C0400C7EAB8 /* OneTimePasswordSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OneTimePasswordSettings.h; sourceTree = "<group>"; };
 		089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OneTimePasswordSettings.m; sourceTree = "<group>"; };
 		08C8E26826BBA376006D4608 /* OneTimePasswordExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OneTimePasswordExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,9 +88,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08804D93274BF30000634C07 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				08804D90274BE72D00634C07 /* OneTimePasswordConverter.h */,
+				08804D91274BE72D00634C07 /* OneTimePasswordConverter.m */,
+			);
+			path = Converter;
+			sourceTree = "<group>";
+		};
 		08804D9E274D283900634C07 /* OneTimePasswordExampleTests */ = {
 			isa = PBXGroup;
 			children = (
+				08804DA6274D3FA800634C07 /* OneTimePasswordConverterTest.m */,
 				08804D9F274D283900634C07 /* OneTimePasswordSettingsTests.m */,
 			);
 			path = OneTimePasswordExampleTests;
@@ -94,6 +109,7 @@
 		089ECCC127417BDA00C7EAB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				08804D93274BF30000634C07 /* Converter */,
 				089ECCC227417C0400C7EAB8 /* OneTimePasswordSettings.h */,
 				089ECCC327417C0400C7EAB8 /* OneTimePasswordSettings.m */,
 			);
@@ -314,6 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08804DA0274D283900634C07 /* OneTimePasswordSettingsTests.m in Sources */,
+				08804DA7274D3FA800634C07 /* OneTimePasswordConverterTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				08C8E27326BBA376006D4608 /* ViewController.m in Sources */,
+				08804D92274BE72D00634C07 /* OneTimePasswordConverter.m in Sources */,
 				08C8E26D26BBA376006D4608 /* AppDelegate.m in Sources */,
 				4F8B41292705F8CF00CF6A1A /* SettingsTableViewCell.m in Sources */,
 				4F8B41252703520D00CF6A1A /* SettingController.m in Sources */,
