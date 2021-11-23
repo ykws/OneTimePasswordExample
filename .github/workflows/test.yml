@@ -1,0 +1,25 @@
+name: XCTest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        
+      - name: CocoaPods
+        run: pod install
+
+      - name: Test
+        run: xcodebuild test -workspace OneTimePasswordExample.xcworkspace/ -scheme OneTimePasswordExample -resultBundlePath TestReulsts -sdk iphonesimulator -destination "platform=iOS Simulator,iPhone 11"
+        
+      - uses: kishikawakatsumi/xcresulttool@v1.3.0
+        with: 
+          path: TestResults.xcresult
+        if: success() || failure()
