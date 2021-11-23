@@ -6,7 +6,7 @@
 //
 
 #import "OneTimePasswordSettings.h"
-#import <Base32/MF_Base32Additions.h>
+#import "OneTimePasswordConverter.h"
 
 @implementation OneTimePasswordSettings
 
@@ -20,9 +20,7 @@
         NSString *issuer = @"...";
         NSString *secretString = @"...";
 
-        NSData *secretData = [NSData dataWithBase32String:secretString];
-
-        sharedInstance.secretData = secretData;
+        sharedInstance.secretData = [OneTimePasswordConverter secretFromString:secretString];
         sharedInstance.name = name;
         sharedInstance.issuer = issuer;
         sharedInstance.algorithm = [OTPToken defaultAlgorithm];
@@ -41,27 +39,27 @@
 }
 
 - (NSString *)algorithmString {
-    return [NSString stringForAlgorithm:self.algorithm];
+    return [OneTimePasswordConverter stringFromAlgorithm:self.algorithm];
 }
 
 - (NSString *)digitsString {
-    return [NSString stringWithFormat:@"%d", (int)self.digits];
+    return [OneTimePasswordConverter stringFromDigits:self.digits];
 }
 
 - (NSString *)periodString {
-    return [NSString stringWithFormat:@"%d", (int)self.period];
+    return [OneTimePasswordConverter stringFromPeriod:self.period];
 }
 
 - (void)saveAlgorithmString:(NSString *)algorithmString {
-    self.algorithm = [algorithmString algorithmValue];
+    self.algorithm = [OneTimePasswordConverter algorithmFromString:algorithmString];
 }
 
 - (void)saveDigitsString:(NSString *)digitsString {
-    self.digits = [digitsString intValue];
+    self.digits = [OneTimePasswordConverter digitisFromString:digitsString];
 }
 
 - (void)savePeriodString:(NSString *)periodString {
-    self.period = [periodString intValue];
+    self.period = [OneTimePasswordConverter periodFromString:periodString];
 }
 
 @end
