@@ -16,17 +16,24 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *oneTimePasswordLabel;
 @property (weak, nonatomic) IBOutlet UAProgressView *oneTimePasswordProgressView;
+
+@property (nonatomic) NSTimer * timer;
 @property (nonatomic, assign) CGFloat localProgress;
 
 @end
 
 @implementation ViewController
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 
     [self initOneTimePasswordView];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    [self.timer invalidate];
 }
 
 - (void)initOneTimePasswordView {
@@ -43,7 +50,7 @@
     [self.oneTimePasswordLabel setText:password];
 
     NSTimeInterval timeInterval = self.settings.period / 1000;
-    [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:timeInterval target:self selector:@selector(updateOneTimePasswordView:) userInfo:nil repeats:YES];
 }
 
 - (void)updateOneTimePasswordView:(NSTimer *)timer {
