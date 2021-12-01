@@ -54,6 +54,8 @@ extern SettingsItem SettingsItemUnknown;
     self.algorithmPatterns = @[@"SHA1", @"SHA256", @"SHA512"];
     self.digitsPatterns = @[@"4", @"5", @"6", @"7", @"8", @"9", @"10"];
     self.periodPatterns = @[@"30", @"60"];
+    
+    [self tableView:self.tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow: 0 inSection: 0]];
 }
 
 #pragma mark - Table view data source
@@ -90,11 +92,10 @@ extern SettingsItem SettingsItemUnknown;
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // FIXME: タップしても反応しないことがある
     self.settingsItem = indexPath.row;
     NSInteger selectRow = [self pickerSelectRowWithItem:self.settingsItem];
-    [self.pickerView selectRow:selectRow inComponent:0 animated:true];
     [self.pickerView reloadAllComponents];
+    [self.pickerView selectRow:selectRow inComponent:0 animated:true];
 }
 
 #pragma mark - Picker view data source
