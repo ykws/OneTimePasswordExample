@@ -6,7 +6,6 @@
 //
 
 #import "SettingController.h"
-#import "SettingsTableViewCell.h"
 #import "OneTimePasswordSettings.h"
 
 #pragma mark - Settings item
@@ -19,10 +18,14 @@ typedef NS_ENUM(UInt8, SettingsItem) {
 
 extern SettingsItem SettingsItemUnknown;
 
-
 #pragma mark - Settings table view controller
 
-@interface SettingController () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface SettingController () <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (weak, nonatomic) IBOutlet UILabel *algorithmLabel;
+@property (weak, nonatomic) IBOutlet UILabel *digitsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *periodLabel;
 
 @property (nonatomic) OneTimePasswordSettings *settings;
 
@@ -45,6 +48,12 @@ extern SettingsItem SettingsItemUnknown;
     
     self.settings = [OneTimePasswordSettings sharedInstance];
 
+    self.nameTextField.delegate = self;
+    self.nameTextField.text = self.settings.name;
+    self.algorithmLabel.text = [self.settings algorithmString];
+    self.digitsLabel.text = [self.settings digitsString];
+    self.periodLabel.text = [self.settings periodString];
+
     self.pickerView = [[UIPickerView alloc] init];
     self.pickerView.center = self.view.center;
     self.pickerView.dataSource = self;
@@ -56,45 +65,26 @@ extern SettingsItem SettingsItemUnknown;
     self.periodPatterns = @[@"30", @"60"];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SettingsTableViewCell *cell = (SettingsTableViewCell *)[tableView dequeueReusableCellWithIdentifier: @"SettingsTableViewCell" forIndexPath:indexPath];
-    
-    switch (indexPath.row) {
-        case 0:
-            cell.titleLabel.text = @"アルゴリズム";
-            cell.valueLabel.text = [self.settings algorithmString];
-            break;
-        case 1:
-            cell.titleLabel.text = @"OTP桁数";
-            cell.valueLabel.text = [self.settings digitsString];
-            break;
-        case 2:
-            cell.titleLabel.text = @"タイムステップ数";
-            cell.valueLabel.text = [self.settings periodString];
-            break;
-    }
-    
-    return cell;
-}
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // FIXME: タップしても反応しないことがある
-    self.settingsItem = indexPath.row;
+    self.settingsItem = (indexPath.row - 1);
     NSInteger selectRow = [self pickerSelectRowWithItem:self.settingsItem];
     [self.pickerView selectRow:selectRow inComponent:0 animated:true];
     [self.pickerView reloadAllComponents];
+}
+
+#pragma mark - Text field delegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    self.settings.name = textField.text;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    self.settings.name = textField.text;
+    return YES;
 }
 
 #pragma mark - Picker view data source
@@ -111,8 +101,6 @@ extern SettingsItem SettingsItemUnknown;
             return self.digitsPatterns.count;
         case PeriodItem:
             return self.periodPatterns.count;
-        default:
-            return 0;
     }
 }
 
@@ -127,20 +115,21 @@ extern SettingsItem SettingsItemUnknown;
         case PeriodItem:
             return self.periodPatterns[row];
     }
-    
-    return @"";
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (self.settingsItem) {
         case AlgorithmItem:
             [self.settings saveAlgorithmString:self.algorithmPatterns[row]];
+            self.algorithmLabel.text = [self.settings algorithmString];
             break;
         case DigitsItem:
             [self.settings saveDigitsString:self.digitsPatterns[row]];
+            self.digitsLabel.text = [self.settings digitsString];
             break;
         case PeriodItem:
             [self.settings savePeriodString:self.periodPatterns[row]];
+            self.periodLabel.text = [self.settings periodString];
             break;
     }
  
@@ -158,7 +147,6 @@ extern SettingsItem SettingsItemUnknown;
         case PeriodItem:
             return [self indexWithPeriodString:[self.settings periodString]];
     }
-    return 0;
 }
 
 - (NSInteger)indexWithAlgorithmString:(NSString *)algorithmString {
